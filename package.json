@@ -5,7 +5,8 @@
   "license": "UNLICENSED",
   "devDependencies": {
     "@fitbit/sdk": "~3.1.2",
-    "@fitbit/sdk-cli": "^1.6.3"
+    "@fitbit/sdk-cli": "^1.6.3",
+    "fitfont": "1.2.5"
   },
   "fitbit": {
     "appUUID": "8ed8327f-35e1-4888-ba6e-cc07c0f60b4b",
@@ -13,7 +14,14 @@
     "appDisplayName": "stardew valley",
     "iconFile": "resources/icon.png",
     "wipeColor": "#ffffff",
-    "requestedPermissions": ["access_activity", "access_user_profile", "access_heart_rate", "access_location", "access_internet", "run_background"],
+    "requestedPermissions": [
+      "access_activity",
+      "access_user_profile",
+      "access_heart_rate",
+      "access_location",
+      "access_internet",
+      "run_background"
+    ],
     "buildTargets": [
       "higgs",
       "meson",

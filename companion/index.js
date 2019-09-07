@@ -13,5 +13,5 @@ messaging.peerSocket.close = () => {
 };
 
 messaging.peerSocket.onmessage = evt => {
-    console.log( `received: ${JSON.stringify(evt)}` );
+    // evt.data
 };

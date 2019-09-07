@@ -1,3 +1,57 @@
 <svg class="background">
-  <text id="exampleText" />
+  <svg x="20%" y="0%" width="80%" height="80%">
+    <image href="clock/clock.png" />
+  </svg>
+
+  <svg x="20%" y="1%" width="152" height="152">
+    <g transform="translate(50%,50%), rotate(90)" id="clockHand">
+      <image x="-76" y="-76" href="clock/hand.png" width="152" height="152" load="sync" />
+    </g>
+  </svg>
+
+  <use href="#fitfont" id="dateShadow">
+        <use href="#fitfont-char"/>
+        <use href="#fitfont-char"/>
+        <use href="#fitfont-char"/>
+        <use href="#fitfont-char"/>
+        <use href="#fitfont-char"/>
+        <use href="#fitfont-char"/>
+        <use href="#fitfont-char"/>
+        <use href="#fitfont-char"/>
+        <use href="#fitfont-char"/>
+  </use>
+  <use href="#fitfont" id="date">
+        <use href="#fitfont-char"/>
+        <use href="#fitfont-char"/>
+        <use href="#fitfont-char"/>
+        <use href="#fitfont-char"/>
+        <use href="#fitfont-char"/>
+        <use href="#fitfont-char"/>
+        <use href="#fitfont-char"/>
+        <use href="#fitfont-char"/>
+        <use href="#fitfont-char"/>
+  </use>
+
+  <use href="#fitfont" id="timeShadow">
+        <use href="#fitfont-char"/>
+        <use href="#fitfont-char"/>
+        <use href="#fitfont-char"/>
+        <use href="#fitfont-char"/>
+        <use href="#fitfont-char"/>
+        <use href="#fitfont-char"/>
+        <use href="#fitfont-char"/>
+        <use href="#fitfont-char"/>
+        <use href="#fitfont-char"/>
+  </use>
+  <use href="#fitfont" id="time">
+        <use href="#fitfont-char"/>
+        <use href="#fitfont-char"/>
+        <use href="#fitfont-char"/>
+        <use href="#fitfont-char"/>
+        <use href="#fitfont-char"/>
+        <use href="#fitfont-char"/>
+        <use href="#fitfont-char"/>
+        <use href="#fitfont-char"/>
+        <use href="#fitfont-char"/>
+  </use>
 </svg>
