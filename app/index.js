@@ -1,9 +1,5 @@
 import clock from "clock";
-
-import document from "document";
-
 import * as messaging from "messaging";
-
 import * as constants from './const';
 
 messaging.peerSocket.onopen = () => {
@@ -33,5 +29,5 @@ clock.ontick = (evt) => {
 
   let totalSecondPassedToday = ( evt.date.getHours( ) * 3600 ) + ( evt.date.getMinutes( ) * 60 ) + evt.date.getSeconds( ); 
   let handAngle = ( totalSecondPassedToday / 86400 ) * 180;
-  document.getElementById( "clockHand" ).groupTransform.rotate.angle = handAngle;
+  constants.clockHand.groupTransform.rotate.angle = handAngle;
 };

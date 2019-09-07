@@ -1,4 +1,8 @@
-<svg class="background">
+<svg class="clockScreen">
+  <svg>
+    <image href="map/summer.png" />
+  </svg>
+
   <svg x="20%" y="0%" width="80%" height="80%">
     <image href="clock/clock.png" />
   </svg>
