@@ -1,27 +1,47 @@
-.clockScreen {
+#root {
   viewport-fill: black;
 }
 
+#clockElement {
+  y: 30;
+  visibility: visible;
+}
+
 #date {
-  x: 54%;
-  y: 17%;
+  x: 125;
+  y: 52;
   fill: #2C1100;
 }
 
 #dateShadow {
-  x: 53%;
-  y: 18%;
+  x: 123;
+  y: 54;
   fill: #D3904A;
 }
 
 #time {
-  x: 52%;
-  y: 48%;
+  x: 125;
+  y: 143;
   fill: #2C1100;
 }
 
 #timeShadow {
-  x: 51%;
-  y: 49%;
+  x: 123;
+  y: 145;
   fill: #D3904A;
+}
+
+#goldLabel {
+  x: 77;
+  y: 196;
+}
+
+#energyBar {
+  width: 46;
+  height: 254;
+
+  x: 252;
+  y: 25;
+
+  visibility: hidden;
 }
