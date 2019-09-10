@@ -46,7 +46,7 @@ clock.ontick = (evt) => {
     constants.dateShadowLabel.text = dateContent;
 
     let stepText = "";
-    for( let i = 8 - ( "" + today.adjusted.steps ).length; i < 8; i++ )
+    for( let i = ( "" + today.adjusted.steps ).length; i < 8; i++ )
       stepText += " ";
     stepText += today.adjusted.steps;
     constants.goldLabel.text = stepText;
