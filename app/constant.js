@@ -11,7 +11,7 @@ export const WeekDay = [ "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" ];
 // water frame count
 export const WaterFrameCount = 4;
 
-// fitfont dynamic date labels
+// fitfont dynamic labels
 export const dateLabel = new FitFont(
     { 
         id:'date',
@@ -56,7 +56,7 @@ export const timeShadowLabel = new FitFont(
     }
 );
 
-export const goldLabel = new FitFont(
+export const stepLabel = new FitFont(
     { 
         id:'goldText',
         font:'SVNumber',

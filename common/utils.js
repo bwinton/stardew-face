@@ -39,9 +39,9 @@ export function calculateSeason(d) {
 export function hslToRgb(h, s, l){
     var r, g, b;
 
-    if(s == 0){
+    if(s == 0) {
         r = g = b = l; // achromatic
-    }else{
+    } else {
         var hue2rgb = function hue2rgb(p, q, t){
             if(t < 0) t += 1;
             if(t > 1) t -= 1;

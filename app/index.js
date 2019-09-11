@@ -1,13 +1,12 @@
 import clock from "clock";
 import * as messaging from "messaging";
-import * as constants from "./const";
-import { calculateSeason, hslToRgb } from "../common/utils";
-
+import * as constants from "./constant";
 import { today } from "user-activity";
-
 import { battery } from "power";
 
-let waterFrame = 0;
+import { calculateSeason, hslToRgb } from "../common/utils";
+
+let currentWaterFrame = 0;
 
 messaging.peerSocket.onopen = () => {
   console.log("App Socket Open");
@@ -31,13 +30,16 @@ clock.ontick = (evt) => {
     //messaging.peerSocket.send( "hello" );
   }
 
+  // calculate season based on ticked date
   let currentSeason = calculateSeason( evt.date );
 
-  waterFrame = ( ( waterFrame + 1 ) % constants.WaterFrameCount );
-  waterFrame = waterFrame == 0 ? 4 : waterFrame;
-  constants.water.href = "map/water" + waterFrame + ".png";
+  // update map background
+  currentWaterFrame = ( ( currentWaterFrame + 1 ) % constants.WaterFrameCount );
+  currentWaterFrame = currentWaterFrame == 0 ? 4 : currentWaterFrame;
+  constants.water.href = "map/water" + currentWaterFrame + ".png";
   constants.map.href="map/" + currentSeason + ".png";
 
+  // update clock if visible
   if( constants.clockElement.style.visibility === "visible" ) {
     constants.season.href = "clock/season/" + currentSeason + ".png";
 
@@ -49,7 +51,7 @@ clock.ontick = (evt) => {
     for( let i = ( "" + today.adjusted.steps ).length; i < 8; i++ )
       stepText += " ";
     stepText += today.adjusted.steps;
-    constants.goldLabel.text = stepText;
+    constants.stepLabel.text = stepText;
 
     let timeContent = ( evt.date.getHours( ) == 0 ? 12 : ( evt.date.getHours( ) % 13 ) ) + ( evt.date.getSeconds( ) % 2 == 0 ? ":" : " " ) + ( evt.date.getMinutes( ) < 10 ? ( "0" + evt.date.getMinutes( ) ) : evt.date.getMinutes( ) ) + " " + ( ( Math.floor( evt.date.getHours( ) / 12 ) <= 0 ? "am" : "pm" ) );
     constants.timeLabel.text = timeContent;
@@ -60,6 +62,7 @@ clock.ontick = (evt) => {
     constants.clockHand.groupTransform.rotate.angle = handAngle;
   }
 
+  // update energy bar if visible
   if( constants.energyBarContainer.style.visibility === "visible" ) {
     let level = battery.chargeLevel;
     let energyBarHeight = Math.floor( level / 100 * constants.energyBarLength );

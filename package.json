@@ -1,8 +1,7 @@
 {
   "name": "clock",
-  "version": "0.1.0",
-  "private": true,
-  "license": "UNLICENSED",
+  "version": "1.0.4",
+  "license": "Apache-2.0",
   "devDependencies": {
     "@fitbit/sdk": "~3.1.2",
     "@fitbit/sdk-cli": "^1.6.3",
@@ -15,12 +14,7 @@
     "iconFile": "resources/icon.png",
     "wipeColor": "#ffffff",
     "requestedPermissions": [
-      "access_activity",
-      "access_user_profile",
-      "access_heart_rate",
-      "access_location",
-      "access_internet",
-      "run_background"
+      "access_activity"
     ],
     "buildTargets": [
       "meson"
