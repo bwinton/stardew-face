@@ -6,6 +6,8 @@ import { battery } from "power";
 
 import { calculateSeason, hslToRgb } from "../common/utils";
 
+import { preferences } from "user-settings";
+
 let currentWaterFrame = 0;
 
 messaging.peerSocket.onopen = () => {
@@ -25,6 +27,8 @@ constants.root.onclick = (evt) => {
   constants.energyBarContainer.style.visibility = constants.energyBarContainer.style.visibility === "hidden" ? "visible" : "hidden";
 }
 
+var currentHour = 0;
+
 clock.ontick = (evt) => {
   if( messaging.peerSocket.readyState === messaging.peerSocket.OPEN ) {
     //messaging.peerSocket.send( "hello" );
@@ -39,42 +43,45 @@ clock.ontick = (evt) => {
   constants.water.href = "map/water" + currentWaterFrame + ".png";
   constants.map.href="map/" + currentSeason + ".png";
 
-  // update clock if visible
-  if( constants.clockElement.style.visibility === "visible" ) {
-    constants.season.href = "clock/season/" + currentSeason + ".png";
+  // update clock
+  constants.season.href = "clock/season/" + currentSeason + ".png";
 
-    let dateContent = constants.WeekDay[ evt.date.getDay( ) ] + ". " + evt.date.getDate( );
-    constants.dateLabel.text = dateContent;
-    constants.dateShadowLabel.text = dateContent;
+  let dateContent = constants.WeekDay[ evt.date.getDay( ) ] + ". " + evt.date.getDate( );
+  constants.dateLabel.text = dateContent;
+  constants.dateShadowLabel.text = dateContent;
 
-    let stepText = "";
-    for( let i = ( "" + today.adjusted.steps ).length; i < 8; i++ )
-      stepText += " ";
-    stepText += today.adjusted.steps;
-    constants.stepLabel.text = stepText;
+  let stepText = "";
+  for( let i = ( "" + today.adjusted.steps ).length; i < 8; i++ )
+    stepText += " ";
+  stepText += today.adjusted.steps;
+  constants.stepLabel.text = stepText;
 
-    let timeContent = ( evt.date.getHours( ) == 0 ? 12 : ( evt.date.getHours( ) % 13 ) ) + ( evt.date.getSeconds( ) % 2 == 0 ? ":" : " " ) + ( evt.date.getMinutes( ) < 10 ? ( "0" + evt.date.getMinutes( ) ) : evt.date.getMinutes( ) ) + " " + ( ( Math.floor( evt.date.getHours( ) / 12 ) <= 0 ? "am" : "pm" ) );
-    constants.timeLabel.text = timeContent;
-    constants.timeShadowLabel.text = timeContent;
-
-    let totalSecondPassedToday = ( evt.date.getHours( ) * 3600 ) + ( evt.date.getMinutes( ) * 60 ) + evt.date.getSeconds( ); 
-    let handAngle = ( totalSecondPassedToday / 86400 ) * 180;
-    constants.clockHand.groupTransform.rotate.angle = handAngle;
+  let timeContent = "";
+  evt.date.setHours( currentHour );
+  currentHour = ( currentHour + 1 ) % 24;
+  if( preferences.clockDisplay === "12h" ) {
+    timeContent = ( ( evt.date.getHours( ) < 12 ) ? ( ( evt.date.getHours( ) == 0 ) ? 12 : evt.date.getHours( ) + "" ) : ( ( evt.date.getHours( ) % 12 == 0 ) ? 12 : ( evt.date.getHours( ) % 12 ) + "" ) ) + ( evt.date.getSeconds( ) % 2 == 0 ? ":" : " " ) + ( evt.date.getMinutes( ) < 10 ? ( "0" + evt.date.getMinutes( ) ) : evt.date.getMinutes( ) ) + " " + ( ( evt.date.getHours( ) < 12 ) ? "am" : "pm" );
+  } else {
+    timeContent = evt.date.getHours( ) + ( evt.date.getSeconds( ) % 2 == 0 ? ":" : " " ) + ( evt.date.getMinutes( ) < 10 ? ( "0" + evt.date.getMinutes( ) ) : evt.date.getMinutes( ) ) + ( evt.date.getSeconds( ) % 2 == 0 ? ":" : " " ) + ( evt.date.getSeconds( ) < 10 ? "0" : "" ) + evt.date.getSeconds( );
   }
+  constants.timeLabel.text = timeContent;
+  constants.timeShadowLabel.text = timeContent;
 
-  // update energy bar if visible
-  if( constants.energyBarContainer.style.visibility === "visible" ) {
-    let level = battery.chargeLevel;
-    let energyBarHeight = Math.floor( level / 100 * constants.energyBarLength );
-    constants.energyBar.height = energyBarHeight;
-    constants.energyBar.y = constants.energyBarLength - energyBarHeight;
-    let hue = 120 * ( level / 100 );
-    let rgb = hslToRgb( hue / 360, 1, 0.5 );
-    let fillColor = "#";
-    rgb.forEach( function( element ) {
-      let value = element.toString( 16 );
-      fillColor += ( value.length == 1 ? "0" : "" ) + value;
-    });
-    constants.energyBar.style.fill = fillColor;
-  }
+  let totalSecondPassedToday = ( evt.date.getHours( ) * 3600 ) + ( evt.date.getMinutes( ) * 60 ) + evt.date.getSeconds( ); 
+  let handAngle = ( totalSecondPassedToday / 86400 ) * 180;
+  constants.clockHand.groupTransform.rotate.angle = handAngle;
+
+  // update energy bar
+  let level = battery.chargeLevel;
+  let energyBarHeight = Math.floor( level / 100 * constants.energyBarLength );
+  constants.energyBar.height = energyBarHeight;
+  constants.energyBar.y = constants.energyBarLength - energyBarHeight;
+  let hue = 120 * ( level / 100 );
+  let rgb = hslToRgb( hue / 360, 1, 0.5 );
+  let fillColor = "#";
+  rgb.forEach( function( element ) {
+    let value = element.toString( 16 );
+    fillColor += ( value.length == 1 ? "0" : "" ) + value;
+  });
+  constants.energyBar.style.fill = fillColor;
 };

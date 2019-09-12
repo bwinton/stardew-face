@@ -7,8 +7,8 @@
   <svg id="clockElement">
     <svg x="5" y="0" width="293" height="240">
       <image href="clock/clock.png" />
-      <image href="clock/season/summer.png" id="season" width="48" height="32" x="119" y="65" />
-      <image href="clock/weather/wedding.png" width="48" height="32" x="216" y="65" />
+      <image href="clock/season/summer.png" id="season" width="48" height="32" x="216" y="65" />
+      <image href="clock/weather/wedding.png" width="48" height="32" x="119" y="65" />
     </svg>
 
     <svg x="19" y="2" width="152" height="152">
