@@ -44,14 +44,23 @@ clock.ontick = (evt) => {
   // update clock
   constants.season.href = "clock/season/" + currentSeason + ".png";
 
-  let dayList;
-  let localeRoot = locale.language.split( "-" )[ 0 ];
-  if( constants.WeekDay.has( localeRoot ) ) {
-    dayList = constants.WeekDay.get( localeRoot );
-  } else {
-    dayList = constants.WeekDay.get( "en" )
+  let day;
+  switch( locale.language.split( "-" )[ 0 ] ) {
+    default:
+    case "en":
+      day = constants.WeekDayEnglish[ evt.date.getDay( ) ];
+      break;
+    case "fr":
+      day = constants.WeekDayFrench[ evt.date.getDay( ) ];
+      break;
+    case "de":
+      day = constants.WeekDayDeutch[ evt.date.getDay( ) ];
+      break;
+    case "es":
+      day = constants.WeekDaySpanish[ evt.date.getDay( ) ];
+      break;
   }
-  let dateContent = dayList[ evt.date.getDay( ) ] + ". " + evt.date.getDate( );
+  let dateContent = day + ". " + evt.date.getDate( );
   constants.dateLabel.text = dateContent;
   constants.dateShadowLabel.text = dateContent;
 

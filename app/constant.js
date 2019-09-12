@@ -6,11 +6,10 @@ import { FitFont } from 'fitfont';
 clock.granularity = "seconds";
 
 // week day names (shorted, three letters)
-export const WeekDay = new Map( );
-WeekDay.set("en", [ "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" ]);
-WeekDay.set("fr", [ "Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam" ]);
-WeekDay.set("de", [ "Son", "Mon", "Die", "Mit", "Don", "Fre", "Sam" ]);
-WeekDay.set("es", [ "Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab" ]);
+export const WeekDayEnglish = [ "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" ];
+export const WeekDayFrench = [ "Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam" ];
+export const WeekDayDeutch = [ "Son", "Mon", "Die", "Mit", "Don", "Fre", "Sam" ];
+export const WeekDaySpanish = [ "Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab" ];
 
 // water frame count
 export const WaterFrameCount = 4;
