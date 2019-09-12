@@ -11,7 +11,7 @@
       <image href="clock/weather/wedding.png" width="48" height="32" x="119" y="65" />
     </svg>
 
-    <svg x="19" y="2" width="152" height="152">
+    <svg x="20" y="4" width="152" height="152">
       <g transform="translate(50%,50%), rotate(90)" id="clockHand">
         <image x="-76" y="-76" href="clock/hand.png" width="152" height="152" load="sync" />
       </g>

@@ -6,7 +6,7 @@ import { battery } from "power";
 
 import { calculateSeason, hslToRgb } from "../common/utils";
 
-import { preferences } from "user-settings";
+import { preferences, locale } from "user-settings";
 
 let currentWaterFrame = 0;
 
@@ -27,8 +27,6 @@ constants.root.onclick = (evt) => {
   constants.energyBarContainer.style.visibility = constants.energyBarContainer.style.visibility === "hidden" ? "visible" : "hidden";
 }
 
-var currentHour = 0;
-
 clock.ontick = (evt) => {
   if( messaging.peerSocket.readyState === messaging.peerSocket.OPEN ) {
     //messaging.peerSocket.send( "hello" );
@@ -46,7 +44,14 @@ clock.ontick = (evt) => {
   // update clock
   constants.season.href = "clock/season/" + currentSeason + ".png";
 
-  let dateContent = constants.WeekDay[ evt.date.getDay( ) ] + ". " + evt.date.getDate( );
+  let dayList;
+  let localeRoot = locale.language.split( "-" )[ 0 ];
+  if( constants.WeekDay.has( localeRoot ) ) {
+    dayList = constants.WeekDay.get( localeRoot );
+  } else {
+    dayList = constants.WeekDay.get( "en" )
+  }
+  let dateContent = dayList[ evt.date.getDay( ) ] + ". " + evt.date.getDate( );
   constants.dateLabel.text = dateContent;
   constants.dateShadowLabel.text = dateContent;
 
@@ -57,12 +62,10 @@ clock.ontick = (evt) => {
   constants.stepLabel.text = stepText;
 
   let timeContent = "";
-  evt.date.setHours( currentHour );
-  currentHour = ( currentHour + 1 ) % 24;
   if( preferences.clockDisplay === "12h" ) {
     timeContent = ( ( evt.date.getHours( ) < 12 ) ? ( ( evt.date.getHours( ) == 0 ) ? 12 : evt.date.getHours( ) + "" ) : ( ( evt.date.getHours( ) % 12 == 0 ) ? 12 : ( evt.date.getHours( ) % 12 ) + "" ) ) + ( evt.date.getSeconds( ) % 2 == 0 ? ":" : " " ) + ( evt.date.getMinutes( ) < 10 ? ( "0" + evt.date.getMinutes( ) ) : evt.date.getMinutes( ) ) + " " + ( ( evt.date.getHours( ) < 12 ) ? "am" : "pm" );
   } else {
-    timeContent = evt.date.getHours( ) + ( evt.date.getSeconds( ) % 2 == 0 ? ":" : " " ) + ( evt.date.getMinutes( ) < 10 ? ( "0" + evt.date.getMinutes( ) ) : evt.date.getMinutes( ) ) + ( evt.date.getSeconds( ) % 2 == 0 ? ":" : " " ) + ( evt.date.getSeconds( ) < 10 ? "0" : "" ) + evt.date.getSeconds( );
+    timeContent = evt.date.getHours( ) + ( evt.date.getSeconds( ) % 2 == 0 ? ":" : " " ) + ( evt.date.getMinutes( ) < 10 ? ( "0" + evt.date.getMinutes( ) ) : evt.date.getMinutes( ) );
   }
   constants.timeLabel.text = timeContent;
   constants.timeShadowLabel.text = timeContent;
