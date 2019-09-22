@@ -5,11 +5,12 @@ import { FitFont } from 'fitfont';
 // update every second
 clock.granularity = "seconds";
 
-// week day names (shorted, three letters)
+// week day names (shorted, three letters, starts with Sunday)
 export const WeekDayEnglish = [ "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" ];
 export const WeekDayFrench = [ "Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam" ];
 export const WeekDayDeutch = [ "Son", "Mon", "Die", "Mit", "Don", "Fre", "Sam" ];
 export const WeekDaySpanish = [ "Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab" ];
+export const WeekDayItalian = ["Dom", "Lun", "Mar", "Mer", "Gio", "Ven", "Sab"];
 
 // water frame count
 export const WaterFrameCount = 4;
@@ -70,6 +71,28 @@ export const stepLabel = new FitFont(
     }
 );
 
+export const heartRateText = new FitFont(
+    {
+            id:'heartRateText',
+            font:'SVThin_35',
+
+            halign: 'middle',
+            valign: 'baseline',
+            letterspacing: 0
+    }
+);
+
+export const heartRateTextShadow = new FitFont(
+    {
+        id:'heartRateTextShadow',
+        font:'SVThin_35',
+
+        halign: 'middle',
+        valign: 'baseline',
+        letterspacing: 0
+    }
+);
+
 export const root = document.getElementById( "root" );
 
 export const clockElement= document.getElementById( "clockElement" );
@@ -84,3 +107,8 @@ export const season = document.getElementById( "season" );
 export const energyBarLength = 198;
 export const energyBar = document.getElementById( "energyBarContent" );
 export const energyBarContainer = document.getElementById( "energyBar" );
+
+export const heartFadeAnimation = document.getElementById("heartAnimationFade");
+export const heartRiseAnimation = document.getElementById("heartAnimationRise");
+
+export const heartAnimationArray = [heartFadeAnimation, heartRiseAnimation];

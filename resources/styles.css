@@ -45,3 +45,18 @@
 
   visibility: hidden;
 }
+
+#heartRateText {
+  x: 144;
+  y: 92;
+
+  text-length: 3;
+}
+
+#heartRateTextShadow {
+  x: 142;
+  y: 94;
+  fill: #D3904A;
+
+  text-length: 3;
+}
