@@ -4,41 +4,39 @@ import { settingsStorage } from "settings";
 import * as common from "../common/constant"
 
 if (me.launchReasons.settingsChanged) {
-    sendAllParameter( );
+	sendAllParameter( );
 }
 
 messaging.peerSocket.onmessage = evt => {
-    console.log( evt )
+	//console.log( evt )
 };
 
 messaging.peerSocket.onopen = evt => {
-    console.log( "Companion socket opened" )
+	//console.log( "Companion socket opened" )
 };
 
 messaging.peerSocket.close = () => {
-    console.log("Companion Socket Closed");
+	//console.log("Companion Socket Closed");
 };
 
 messaging.peerSocket.onmessage = evt => {
-    sendAllParameter( );
+	sendAllParameter( );
 };
 
 function sendAllParameter( ) {
-    sendValue(common.IS_SHOWING_SECONDS,
-        settingsStorage.getItem(common.IS_SHOWING_SECONDS));
+	for( let i = 0; i < common.OPTION_LIST.length; i++ ) {
+		sendValue(common.OPTION_LIST[ i ],
+			settingsStorage.getItem(common.OPTION_LIST[ i ]));
+	}
 }
 
-// Event fires when a setting is changed
 settingsStorage.onchange = function(evt) {
-    sendValue( evt.key,
-        evt.newValue );
+	sendValue( evt.key,
+		evt.newValue );
 };
 
 function sendValue( key, value ) {
-    // If we have a MessageSocket, send the data to the device
-    if (messaging.peerSocket.readyState === messaging.peerSocket.OPEN) {
-        messaging.peerSocket.send({key: key, value: JSON.parse(value)});
-    } else {
-        console.log("No peerSocket connection");
-    }
+	if (messaging.peerSocket.readyState === messaging.peerSocket.OPEN) {
+		messaging.peerSocket.send({key: key, value: JSON.parse(value)});
+	}
 }

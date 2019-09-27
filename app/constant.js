@@ -17,80 +17,80 @@ export const WaterFrameCount = 4;
 
 // fitfont dynamic labels
 export const dateLabel = new FitFont(
-    { 
-        id:'date',
-        font:'SVThin_42',
+	{ 
+		id:'date',
+		font:'SVThin_42',
 
-        halign: 'start',
-        valign: 'baseline',
-        letterspacing: 0
-    }
+		halign: 'start',
+		valign: 'baseline',
+		letterspacing: 0
+	}
 );
   
 export const dateShadowLabel = new FitFont(
-    { 
-        id:'dateShadow',
-        font:'SVThin_42',
+	{ 
+		id:'dateShadow',
+		font:'SVThin_42',
 
-        halign: 'start',
-        valign: 'baseline',
-        letterspacing: 0
-    }
+		halign: 'start',
+		valign: 'baseline',
+		letterspacing: 0
+	}
 );
   
 export const timeLabel = new FitFont(
-    { 
-        id:'time',
-        font:'SVThin_42',
+	{ 
+		id:'time',
+		font:'SVThin_42',
 
-        halign: 'start',
-        valign: 'baseline',
-        letterspacing: 0
-    }
+		halign: 'start',
+		valign: 'baseline',
+		letterspacing: 0
+	}
 );
 
 export const timeShadowLabel = new FitFont(
-    { 
-        id:'timeShadow',
-        font:'SVThin_42',
+	{ 
+		id:'timeShadow',
+		font:'SVThin_42',
 
-        halign: 'start',
-        valign: 'baseline',
-        letterspacing: 0
-    }
+		halign: 'start',
+		valign: 'baseline',
+		letterspacing: 0
+	}
 );
 
 export const stepLabel = new FitFont(
-    { 
-        id:'goldText',
-        font:'SVNumber',
+	{ 
+		id:'goldText',
+		font:'SVNumber',
 
-        halign: 'start',
-        valign: 'baseline',
-        letterspacing: 4
-    }
+		halign: 'start',
+		valign: 'baseline',
+		letterspacing: 4
+	}
 );
 
 export const heartRateText = new FitFont(
-    {
-            id:'heartRateText',
-            font:'SVThin_35',
+	{
+			id:'heartRateText',
+			font:'SVThin_35',
 
-            halign: 'middle',
-            valign: 'baseline',
-            letterspacing: 0
-    }
+			halign: 'middle',
+			valign: 'baseline',
+			letterspacing: 0
+	}
 );
 
 export const heartRateTextShadow = new FitFont(
-    {
-        id:'heartRateTextShadow',
-        font:'SVThin_35',
+	{
+		id:'heartRateTextShadow',
+		font:'SVThin_35',
 
-        halign: 'middle',
-        valign: 'baseline',
-        letterspacing: 0
-    }
+		halign: 'middle',
+		valign: 'baseline',
+		letterspacing: 0
+	}
 );
 
 export const root = document.getElementById( "root" );

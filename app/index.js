@@ -7,13 +7,17 @@ import { battery } from "power";
 
 import { calculateSeason, hslToRgb } from "../common/utils";
 
-import { preferences, locale } from "user-settings";
+import { locale } from "user-settings";
 
 import { HeartRateSensor } from "heart-rate";
 
 let currentWaterFrame = 0;
-let isDisplayingSeconds = false;
 let currentHeartBeat = 1;
+
+let isDisplayingSeconds = false;
+let isSouthHemisphere = false;
+let isAmPm = true;
+let isDisplayingMonth = false;
 
 if (HeartRateSensor) {
 	const hrm = new HeartRateSensor();
@@ -33,7 +37,7 @@ messaging.peerSocket.onopen = () => {
 };
 
 messaging.peerSocket.close = () => {
-	console.log("App Socket Closed");
+	//console.log("App Socket Closed");
 };
 
 messaging.peerSocket.onmessage = evt => {
@@ -41,9 +45,18 @@ messaging.peerSocket.onmessage = evt => {
 		case common.IS_SHOWING_SECONDS:
 			isDisplayingSeconds = ( evt.data.value === true );
 			break;
+		case common.IS_SOUTH_HEMISPHERE:
+			isSouthHemisphere = ( evt.data.value === true );
+			break;
+		case common.IS_24_HOURS_MODE:
+			isAmPm = ( evt.data.value === false );
+			break;
+		case common.IS_DISPLAY_MONTH:
+			isDisplayingMonth = ( evt.data.value === true );
+			break;
 
 		default:
-			console.log( "unknown" );
+			console.log( "unknown parameter key" );
 			break
 	}
 };
@@ -54,12 +67,9 @@ constants.root.onclick = (evt) => {
 };
 
 clock.ontick = (evt) => {
-	if( messaging.peerSocket.readyState === messaging.peerSocket.OPEN ) {
-		//messaging.peerSocket.send( "hello" );
-	}
-
 	// calculate season based on ticked date
-	let currentSeason = calculateSeason( evt.date );
+	let currentSeason = calculateSeason( evt.date,
+		isSouthHemisphere );
 
 	// update map background
 	currentWaterFrame = ( ( currentWaterFrame + 1 ) % constants.WaterFrameCount );
@@ -70,8 +80,10 @@ clock.ontick = (evt) => {
 	// update clock
 	constants.season.href = "clock/season/" + currentSeason + ".png";
 
+
+	let currentLocalePrefix = locale.language.split( "-" )[ 0 ];
 	let day;
-	switch( locale.language.split( "-" )[ 0 ] ) {
+	switch( currentLocalePrefix ) {
 		default:
 		case "en":
 			day = constants.WeekDayEnglish[ evt.date.getDay( ) ];
@@ -87,8 +99,23 @@ clock.ontick = (evt) => {
 			break;
 		case "it":
 			day = constants.WeekDayItalian[ evt.date.getDay( ) ];
+			break
 	}
-	let dateContent = day + ". " + evt.date.getDate( );
+	let monthName = "";
+	if( isDisplayingMonth ) {
+		monthName = "/" + ( evt.date.getMonth( ) + 1 );
+		/*switch( currentLocalePrefix ) {
+			default:
+			case "en":
+				monthName = constants.MonthEnglish[ evt.date.getMonth() ];
+				break;
+
+			case "fr":
+				monthName = constants.MonthFrench[ evt.date.getMonth() ];
+				break;
+		}*/
+	}
+	let dateContent = day + ". " + evt.date.getDate( ) + monthName;
 	constants.dateLabel.text = dateContent;
 	constants.dateShadowLabel.text = dateContent;
 
@@ -99,7 +126,7 @@ clock.ontick = (evt) => {
 	constants.stepLabel.text = stepText;
 
 	let timeContent = "";
-	if( preferences.clockDisplay === "12h" ) {
+	if( isAmPm ) {
 		timeContent = ( ( evt.date.getHours( ) < 12 ) ? ( ( evt.date.getHours( ) === 0 ) ? 12 : evt.date.getHours( ) + "" ) : ( ( evt.date.getHours( ) % 12 === 0 ) ? 12 : ( evt.date.getHours( ) % 12 ) + "" ) ) + ( evt.date.getSeconds( ) % 2 === 0 ? ":" : " " ) + ( evt.date.getMinutes( ) < 10 ? ( "0" + evt.date.getMinutes( ) ) : evt.date.getMinutes( ) ) + ( isDisplayingSeconds ? ( ( evt.date.getSeconds( ) % 2 === 0 ? ":" : " " ) + ( evt.date.getSeconds( ) < 10 ? ( "0" + evt.date.getSeconds( ) ) : evt.date.getSeconds( ) ) ) : "" ) + " " + ( isDisplayingSeconds ? "" : ( ( evt.date.getHours( ) < 12 ) ? "am" : "pm" ) );
 	} else {
 		timeContent = evt.date.getHours( ) + ( evt.date.getSeconds( ) % 2 === 0 ? ":" : " " ) + ( evt.date.getMinutes( ) < 10 ? ( "0" + evt.date.getMinutes( ) ) : evt.date.getMinutes( ) ) + ( isDisplayingSeconds ? ( ( evt.date.getSeconds( ) % 2 === 0 ? ":" : " " ) + ( evt.date.getSeconds( ) < 10 ? ( "0" + evt.date.getSeconds( ) ) : evt.date.getSeconds( ) ) ) : "" );

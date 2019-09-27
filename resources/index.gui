@@ -7,9 +7,9 @@
 	<svg id="clockElement">
 		<svg x="5" y="0" width="293" height="240">
 			<image href="clock/clock.png" />
-			<image href="clock/season/summer.png" id="season" width="48" height="32" x="216" y="65" />
+			<image href="clock/season/summer.png" id="season" width="50" height="33" x="215" y="65" />
 
-			<rect x="119" y="65" width="48" height="32" fill="white" />
+			<rect x="118" y="64" width="49" height="34" fill="white" />
 			<use href="#fitfont" id="heartRateTextShadow">
 				<use href="#fitfont-char"/>
 				<use href="#fitfont-char"/>
@@ -52,8 +52,13 @@
 			<use href="#fitfont-char"/>
 			<use href="#fitfont-char"/>
 			<use href="#fitfont-char"/>
+			<use href="#fitfont-char"/>
+			<use href="#fitfont-char"/>
+			<use href="#fitfont-char"/>
 		</use>
 		<use href="#fitfont" id="date">
+			<use href="#fitfont-char"/>
+			<use href="#fitfont-char"/>
 			<use href="#fitfont-char"/>
 			<use href="#fitfont-char"/>
 			<use href="#fitfont-char"/>
