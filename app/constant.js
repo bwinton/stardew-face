@@ -12,6 +12,30 @@ export const WeekDayDeutch = [ "Son", "Mon", "Die", "Mit", "Don", "Fre", "Sam" ]
 export const WeekDaySpanish = [ "Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab" ];
 export const WeekDayItalian = ["Dom", "Lun", "Mar", "Mer", "Gio", "Ven", "Sab"];
 
+// map collision
+export const MapCollision = [
+	[0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1],
+	[0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1],
+	[0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1],
+	[0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+	[0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+	[0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+	[1,0,1,0,0,1,1,1,1,1,1,1,1,0,1,1,1,1,0,1],
+	[1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1],
+	[1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1],
+	[1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1],
+	[1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1],
+	[1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1],
+	[1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1],
+	[1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1],
+	[1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,1,1,1],
+	[1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,1,1,1],
+	[1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1],
+	[1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1],
+	[1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1],
+	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+];
+
 // water frame count
 export const WaterFrameCount = 4;
 
@@ -101,7 +125,9 @@ export const clockElement= document.getElementById( "clockElement" );
 export const clockHand = document.getElementById( "clockHand" );
 
 export const water = document.getElementById( "water" );
-export const map = document.getElementById( "map" );
+export const mapBottom = [ document.getElementById("mapBottom0"), document.getElementById("mapBottom1"), document.getElementById("mapBottom2") ];
+export const mapTop = [ document.getElementById("mapTop0"), document.getElementById("mapTop1"), document.getElementById("mapTop2") ];
+
 export const season = document.getElementById( "season" );
 
 export const energyBarLength = 198;
@@ -112,3 +138,5 @@ export const heartFadeAnimation = document.getElementById("heartAnimationFade");
 export const heartRiseAnimation = document.getElementById("heartAnimationRise");
 
 export const heartAnimationArray = [heartFadeAnimation, heartRiseAnimation];
+
+export const nightMask = document.getElementById("nightMask");

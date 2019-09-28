@@ -1,6 +1,7 @@
 import clock from "clock";
 import * as messaging from "messaging";
 import * as constants from "./constant";
+import * as duck from "./duck";
 import * as common from "../common/constant"
 import { today } from "user-activity";
 import { battery } from "power";
@@ -11,13 +12,29 @@ import { locale } from "user-settings";
 
 import { HeartRateSensor } from "heart-rate";
 
+const MaximumNightMaskOpacity = 0.5;
+
 let currentWaterFrame = 0;
 let currentHeartBeat = 1;
+let currentDisplayMode = 0;
 
 let isDisplayingSeconds = false;
 let isSouthHemisphere = false;
 let isAmPm = true;
 let isDisplayingMonth = false;
+
+let duckArray = [
+	new duck.Duck(0, constants.MapCollision),
+	new duck.Duck(1, constants.MapCollision),
+	new duck.Duck(2, constants.MapCollision),
+	new duck.Duck(3, constants.MapCollision),
+	new duck.Duck(4, constants.MapCollision),
+	new duck.Duck(5, constants.MapCollision),
+	new duck.Duck(6, constants.MapCollision),
+	new duck.Duck(7, constants.MapCollision),
+	new duck.Duck(8, constants.MapCollision),
+	new duck.Duck(9, constants.MapCollision),
+];
 
 if (HeartRateSensor) {
 	const hrm = new HeartRateSensor();
@@ -31,13 +48,7 @@ if (HeartRateSensor) {
 messaging.peerSocket.onopen = () => {
 	if (messaging.peerSocket.readyState === messaging.peerSocket.OPEN) {
 		messaging.peerSocket.send("plz");
-	} else {
-		console.log("No peerSocket connection");
 	}
-};
-
-messaging.peerSocket.close = () => {
-	//console.log("App Socket Closed");
 };
 
 messaging.peerSocket.onmessage = evt => {
@@ -62,8 +73,23 @@ messaging.peerSocket.onmessage = evt => {
 };
 
 constants.root.onclick = (evt) => {
-	constants.clockElement.style.visibility = constants.clockElement.style.visibility === "hidden" ? "visible" : "hidden";
-	constants.energyBarContainer.style.visibility = constants.energyBarContainer.style.visibility === "hidden" ? "visible" : "hidden";
+	currentDisplayMode = ( currentDisplayMode + 1 ) % 3;
+
+	switch( currentDisplayMode ) {
+		default:
+		case 0:
+			constants.clockElement.style.visibility = "visible";
+			constants.energyBarContainer.style.visibility = "hidden";
+			break;
+		case 1:
+			constants.clockElement.style.visibility = "hidden";
+			constants.energyBarContainer.style.visibility = "visible";
+			break;
+		case 2:
+			constants.clockElement.style.visibility = "hidden";
+			constants.energyBarContainer.style.visibility = "hidden";
+			break;
+	}
 };
 
 clock.ontick = (evt) => {
@@ -71,16 +97,53 @@ clock.ontick = (evt) => {
 	let currentSeason = calculateSeason( evt.date,
 		isSouthHemisphere );
 
+	// update map scrolling
+	constants.mapBottom[ 0 ].x = constants.mapTop[ 0 ].x = -1 * Math.ceil( Math.abs( Math.sin( ( evt.date.getTime( ) / 2000000 ) * 16 ) ) * 340.0 );
+	constants.mapBottom[ 0 ].y = constants.mapTop[ 0 ].y = -1 * Math.ceil( Math.abs( Math.sin( ( evt.date.getTime( ) / 2000000 ) * 4 ) ) * 340.0 );
+	for( let i = 1; i < 3; i++ ) {
+		constants.mapBottom[ i ].x = constants.mapTop[ i ].x = constants.mapBottom[ 0 ].x + i * 300;
+		constants.mapBottom[ i ].y = constants.mapTop[ i ].y = constants.mapBottom[ 0 ].y;
+	}
+	constants.water.x = constants.mapBottom[ 0 ].x + 200;
+	constants.water.y = constants.mapBottom[ 0 ].y + 240;
+
+	// update ducks
+	duckArray.forEach(element => {
+		element.Update( evt.date,
+			duckArray,
+			constants.mapBottom[ 0 ],
+		);
+	});
+
 	// update map background
 	currentWaterFrame = ( ( currentWaterFrame + 1 ) % constants.WaterFrameCount );
 	currentWaterFrame = currentWaterFrame === 0 ? 4 : currentWaterFrame;
 	constants.water.href = "map/water" + currentWaterFrame + ".png";
-	constants.map.href="map/" + currentSeason + ".png";
+
+	for( let i = 1; i <= 3; i++ ) {
+		constants.mapBottom[ i - 1 ].href="map/" + currentSeason + "Bottom" + i + ".png";
+		constants.mapTop[ i - 1 ].href="map/" + currentSeason + "Top" + i + ".png";
+	}
+
+	// update night mask
+	let coefficient = 0;
+	if( evt.date.getHours( ) > 19 ) {
+		if( evt.date.getHours( ) < 22 ) {
+			coefficient = ( ( ( evt.date.getHours( ) - 20 ) * 3600.0 + evt.date.getMinutes( ) * 60.0 + evt.date.getSeconds( ) ) / 7200.0 ) * MaximumNightMaskOpacity;
+		} else {
+			coefficient = MaximumNightMaskOpacity;
+		}
+	} else if( evt.date.getHours( ) < 7 ) {
+		if( evt.date.getHours( ) > 4 ) {
+			coefficient = ( ( 7200.0 - ( ( evt.date.getHours( ) - 5 ) * 3600.0 + evt.date.getMinutes( ) * 60.0 + evt.date.getSeconds( ) ) ) / 7200.0 ) * MaximumNightMaskOpacity;
+		} else {
+			coefficient = MaximumNightMaskOpacity;
+		}
+	}
+	constants.nightMask.style.opacity = coefficient;
 
 	// update clock
 	constants.season.href = "clock/season/" + currentSeason + ".png";
-
-
 	let currentLocalePrefix = locale.language.split( "-" )[ 0 ];
 	let day;
 	switch( currentLocalePrefix ) {
@@ -104,16 +167,6 @@ clock.ontick = (evt) => {
 	let monthName = "";
 	if( isDisplayingMonth ) {
 		monthName = "/" + ( evt.date.getMonth( ) + 1 );
-		/*switch( currentLocalePrefix ) {
-			default:
-			case "en":
-				monthName = constants.MonthEnglish[ evt.date.getMonth() ];
-				break;
-
-			case "fr":
-				monthName = constants.MonthFrench[ evt.date.getMonth() ];
-				break;
-		}*/
 	}
 	let dateContent = day + ". " + evt.date.getDate( ) + monthName;
 	constants.dateLabel.text = dateContent;

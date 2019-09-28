@@ -1,7 +1,157 @@
 <svg id="root">
-	<svg width="305" height="305">
-		<image href="map/water1.png" id="water" />
-		<image href="map/summer.png" id="map" />
+	<svg width="640" height="640">
+		<image href="map/water1.png" id="water" width="300" height="300" />
+
+		<image href="map/fallBottom1.png" id="mapBottom0" width="300" height="640" />
+		<image href="map/fallBottom2.png" id="mapBottom1" width="300" height="640" />
+		<image href="map/fallBottom3.png" id="mapBottom2" width="40" height="640" />
+
+		<svg>  
+			<defs>
+				<symbol id="duck0-symbol">
+					<g id="duckGroup0">
+						<image href="duck/left.png" id="duck0" width="32" height="32" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="0,-32" begin="enable" dur="1" id="duckTransformUp0" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="0,32" begin="enable" dur="1" id="duckTransformDown0" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="32,0" begin="enable" dur="1" id="duckTransformRight0" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="-32,0" begin="enable" dur="1" id="duckTransformLeft0" />
+					</g>
+				</symbol>
+			</defs>
+			<use id="duckAnimation0" href="#duck0-symbol" />
+		</svg>
+		<svg>  
+			<defs>
+				<symbol id="duck1-symbol">
+					<g id="duckGroup1">		     
+						<image href="duck/left.png" id="duck1" width="32" height="32" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="0,-32" begin="enable" dur="1" id="duckTransformUp1" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="0,32" begin="enable" dur="1" id="duckTransformDown1" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="32,0" begin="enable" dur="1" id="duckTransformRight1" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="-32,0" begin="enable" dur="1" id="duckTransformLeft1" />
+					</g>
+				</symbol>
+			</defs>
+			<use id="duckAnimation1" href="#duck1-symbol" />
+		</svg>
+		<svg>  
+			<defs>
+				<symbol id="duck2-symbol">
+					<g id="duckGroup2">
+						<image href="duck/left.png" id="duck2" width="32" height="32" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="0,-32" begin="enable" dur="1" id="duckTransformUp2" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="0,32" begin="enable" dur="1" id="duckTransformDown2" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="32,0" begin="enable" dur="1" id="duckTransformRight2" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="-32,0" begin="enable" dur="1" id="duckTransformLeft2" />
+					</g>
+				</symbol>
+			</defs>
+			<use id="duckAnimation2" href="#duck2-symbol" />
+		</svg>
+		<svg>  
+			<defs>
+				<symbol id="duck3-symbol">
+					<g id="duckGroup3">
+					<image href="duck/left.png" id="duck3" width="32" height="32" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="0,-32" begin="enable" dur="1" id="duckTransformUp3" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="0,32" begin="enable" dur="1" id="duckTransformDown3" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="32,0" begin="enable" dur="1" id="duckTransformRight3" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="-32,0" begin="enable" dur="1" id="duckTransformLeft3" />
+					</g>
+				</symbol>
+			</defs>
+			<use id="duckAnimation3" href="#duck3-symbol" />
+		</svg>
+		<svg>  
+			<defs>
+				<symbol id="duck4-symbol">
+					<g id="duckGroup4">
+						<image href="duck/left.png" id="duck4" width="32" height="32" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="0,-32" begin="enable" dur="1" id="duckTransformUp4" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="0,32" begin="enable" dur="1" id="duckTransformDown4" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="32,0" begin="enable" dur="1" id="duckTransformRight4" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="-32,0" begin="enable" dur="1" id="duckTransformLeft4" />
+					</g>
+				</symbol>
+			</defs>
+			<use id="duckAnimation4" href="#duck4-symbol" />
+		</svg>
+		<svg>  
+			<defs>
+				<symbol id="duck5-symbol">
+					<g id="duckGroup5">
+						<image href="duck/left.png" id="duck5" width="32" height="32" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="0,-32" begin="enable" dur="1" id="duckTransformUp5" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="0,32" begin="enable" dur="1" id="duckTransformDown5" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="32,0" begin="enable" dur="1" id="duckTransformRight5" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="-32,0" begin="enable" dur="1" id="duckTransformLeft5" />
+					</g>
+				</symbol>
+			</defs>
+			<use id="duckAnimation5" href="#duck5-symbol" />
+		</svg>
+		<svg>  
+			<defs>
+				<symbol id="duck6-symbol">
+					<g id="duckGroup6">
+						<image href="duck/left.png" id="duck6" width="32" height="32" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="0,-32" begin="enable" dur="1" id="duckTransformUp6" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="0,32" begin="enable" dur="1" id="duckTransformDown6" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="32,0" begin="enable" dur="1" id="duckTransformRight6" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="-32,0" begin="enable" dur="1" id="duckTransformLeft6" />
+					</g>
+				</symbol>
+			</defs>
+			<use id="duckAnimation6" href="#duck6-symbol" />
+		</svg>
+		<svg>  
+			<defs>
+				<symbol id="duck7-symbol">
+					<g id="duckGroup7">
+						<image href="duck/left.png" id="duck7" width="32" height="32" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="0,-32" begin="enable" dur="1" id="duckTransformUp7" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="0,32" begin="enable" dur="1" id="duckTransformDown7" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="32,0" begin="enable" dur="1" id="duckTransformRight7" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="-32,0" begin="enable" dur="1" id="duckTransformLeft7" />
+					</g>
+				</symbol>
+			</defs>
+			<use id="duckAnimation7" href="#duck7-symbol" />
+		</svg>
+		<svg>  
+			<defs>
+				<symbol id="duck8-symbol">
+					<g id="duckGroup8">
+						<image href="duck/left.png" id="duck8" width="32" height="32" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="0,-32" begin="enable" dur="1" id="duckTransformUp8" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="0,32" begin="enable" dur="1" id="duckTransformDown8" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="32,0" begin="enable" dur="1" id="duckTransformRight8" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="-32,0" begin="enable" dur="1" id="duckTransformLeft8" />
+					</g>
+				</symbol>
+			</defs>
+			<use id="duckAnimation8" href="#duck8-symbol" />
+		</svg>
+		<svg>  
+			<defs>
+				<symbol id="duck9-symbol">
+					<g id="duckGroup9">
+						<image href="duck/left.png" id="duck9" width="32" height="32" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="0,-32" begin="enable" dur="1" id="duckTransformUp9" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="0,32" begin="enable" dur="1" id="duckTransformDown9" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="32,0" begin="enable" dur="1" id="duckTransformRight9" />
+						<animateTransform attributeType="translate" final="remove" from="0" to="-32,0" begin="enable" dur="1" id="duckTransformLeft9" />
+					</g>
+				</symbol>
+			</defs>
+			<use id="duckAnimation9" href="#duck9-symbol" />
+		</svg>
+
+		<image href="map/fallTop1.png" id="mapTop0" width="300" height="640" />
+		<image href="map/fallTop2.png" id="mapTop1" width="300" height="640" />
+		<image href="map/fallTop3.png" id="mapTop2" width="40" height="640"/>
+
+		<rect width="100%" height="100%" fill="#0000BC" opacity="0" id="nightMask" />
 	</svg>
 
 	<svg id="clockElement">
