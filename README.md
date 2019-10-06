@@ -38,10 +38,15 @@ This [topic](https://community.fitbit.com/t5/SDK-Development/Animate-FROM-TO-pro
 - Map scrolling
 - Added night mask
 
+### v1.0.12:
+
+- Added support for ionic (higgs) and versa lite (gemini)
+
 ## Contributors
 
 - Maksi Lucy Bähr: Requested heart rate and possibility to display seconds (switchable in settings).
 - Brooke Stehn: Requested south hemisphere seasons switch.
+- Saymawa (reddit): Wanted to install it on ionic.
 
 ## Author
 

@@ -5,6 +5,7 @@ import * as duck from "./duck";
 import * as common from "../common/constant"
 import { today } from "user-activity";
 import { battery } from "power";
+import { me as device } from "device";
 
 import { calculateSeason, hslToRgb } from "../common/utils";
 
@@ -22,6 +23,9 @@ let isDisplayingSeconds = false;
 let isSouthHemisphere = false;
 let isAmPm = true;
 let isDisplayingMonth = false;
+
+// https://dev.fitbit.com/build/guides/multiple-devices/#code-detection
+if (!device.screen) device.screen = { width: 348, height: 250 };
 
 let duckArray = [
 	new duck.Duck(0, constants.MapCollision),
@@ -97,9 +101,17 @@ clock.ontick = (evt) => {
 	let currentSeason = calculateSeason( evt.date,
 		isSouthHemisphere );
 
+	// center clock component
+	constants.clockElement.x = Math.ceil( ( device.screen.width / 2 ) - ( constants.clockElement.width / 2 ) );
+	constants.clockElement.y = Math.ceil( ( device.screen.height / 2 ) - ( constants.clockElement.height / 2 ) );
+
+	// set energy bar position
+	constants.energyBarContainer.x = Math.ceil( device.screen.width - constants.energyBarContainer.width - 5 );
+	constants.energyBarContainer.y = Math.ceil( ( device.screen.height / 2 ) - ( constants.energyBarContainer.height / 2 ) );
+
 	// update map scrolling
-	constants.mapBottom[ 0 ].x = constants.mapTop[ 0 ].x = -1 * Math.ceil( Math.abs( Math.sin( ( evt.date.getTime( ) / 2000000 ) * 16 ) ) * 340.0 );
-	constants.mapBottom[ 0 ].y = constants.mapTop[ 0 ].y = -1 * Math.ceil( Math.abs( Math.sin( ( evt.date.getTime( ) / 2000000 ) * 4 ) ) * 340.0 );
+	constants.mapBottom[ 0 ].x = constants.mapTop[ 0 ].x = -1 * Math.ceil( Math.abs( Math.sin( ( evt.date.getTime( ) / 2000000 ) * 16 ) ) * ( constants.MapBackgroundDimension.x - device.screen.width ) );
+	constants.mapBottom[ 0 ].y = constants.mapTop[ 0 ].y = -1 * Math.ceil( Math.abs( Math.sin( ( evt.date.getTime( ) / 2000000 ) * 4 ) ) * ( constants.MapBackgroundDimension.y - device.screen.height ) );
 	for( let i = 1; i < 3; i++ ) {
 		constants.mapBottom[ i ].x = constants.mapTop[ i ].x = constants.mapBottom[ 0 ].x + i * 300;
 		constants.mapBottom[ i ].y = constants.mapTop[ i ].y = constants.mapBottom[ 0 ].y;
@@ -142,7 +154,7 @@ clock.ontick = (evt) => {
 	}
 	constants.nightMask.style.opacity = coefficient;
 
-	// update clock
+	// update season and date
 	constants.season.href = "clock/season/" + currentSeason + ".png";
 	let currentLocalePrefix = locale.language.split( "-" )[ 0 ];
 	let day;
@@ -172,12 +184,14 @@ clock.ontick = (evt) => {
 	constants.dateLabel.text = dateContent;
 	constants.dateShadowLabel.text = dateContent;
 
+	// update steps count
 	let stepText = "";
 	for( let i = ( "" + today.adjusted.steps ).length; i < 8; i++ )
 		stepText += " ";
 	stepText += today.adjusted.steps;
 	constants.stepLabel.text = stepText;
 
+	// update time
 	let timeContent = "";
 	if( isAmPm ) {
 		timeContent = ( ( evt.date.getHours( ) < 12 ) ? ( ( evt.date.getHours( ) === 0 ) ? 12 : evt.date.getHours( ) + "" ) : ( ( evt.date.getHours( ) % 12 === 0 ) ? 12 : ( evt.date.getHours( ) % 12 ) + "" ) ) + ( evt.date.getSeconds( ) % 2 === 0 ? ":" : " " ) + ( evt.date.getMinutes( ) < 10 ? ( "0" + evt.date.getMinutes( ) ) : evt.date.getMinutes( ) ) + ( isDisplayingSeconds ? ( ( evt.date.getSeconds( ) % 2 === 0 ? ":" : " " ) + ( evt.date.getSeconds( ) < 10 ? ( "0" + evt.date.getSeconds( ) ) : evt.date.getSeconds( ) ) ) : "" ) + " " + ( isDisplayingSeconds ? "" : ( ( evt.date.getHours( ) < 12 ) ? "am" : "pm" ) );
@@ -187,6 +201,7 @@ clock.ontick = (evt) => {
 	constants.timeLabel.text = timeContent;
 	constants.timeShadowLabel.text = timeContent;
 
+	// update clock hand
 	let totalSecondPassedToday = ( evt.date.getHours( ) * 3600 ) + ( evt.date.getMinutes( ) * 60 ) + evt.date.getSeconds( );
 	constants.clockHand.groupTransform.rotate.angle = ( totalSecondPassedToday / 86400 ) * 180;
 
@@ -204,6 +219,7 @@ clock.ontick = (evt) => {
 	});
 	constants.energyBar.style.fill = fillColor;
 
+	// update heart rate
 	if (HeartRateSensor) {
 		setTimeout(function() {
 			currentHeartBeat = ( currentHeartBeat + 1 ) % constants.heartAnimationArray.length;

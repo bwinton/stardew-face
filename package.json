@@ -1,6 +1,6 @@
 {
   "name": "clock",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "license": "Apache-2.0",
   "devDependencies": {
     "@fitbit/sdk": "~3.1.2",
@@ -18,7 +18,9 @@
       "access_heart_rate"
     ],
     "buildTargets": [
-      "meson"
+      "meson",
+      "higgs",
+      "gemini"
     ],
     "i18n": {},
     "defaultLanguage": "en-US"

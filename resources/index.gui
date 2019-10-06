@@ -154,7 +154,7 @@
 		<rect width="100%" height="100%" fill="#0000BC" opacity="0" id="nightMask" />
 	</svg>
 
-	<svg id="clockElement">
+	<svg id="clockElement" width="300" height="240">
 		<svg x="5" y="0" width="293" height="240">
 			<image href="clock/clock.png" />
 			<image href="clock/season/summer.png" id="season" width="50" height="33" x="215" y="65" />

@@ -12,6 +12,12 @@ export const WeekDayDeutch = [ "Son", "Mon", "Die", "Mit", "Don", "Fre", "Sam" ]
 export const WeekDaySpanish = [ "Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab" ];
 export const WeekDayItalian = ["Dom", "Lun", "Mar", "Mer", "Gio", "Ven", "Sab"];
 
+// background dimension
+export const MapBackgroundDimension = {
+	'x': 640,
+	'y': 640,
+};
+
 // map collision
 export const MapCollision = [
 	[0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1],
