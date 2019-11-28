@@ -19,6 +19,10 @@ function settingsComponent(props) {
 					settingsKey="isDisplayMonth"
 					label="Display month?"
 				/>
+				<Toggle
+					settingsKey="isDeactivateScroll"
+					label="Deactivate scrolling?"
+				/>
 			</Section>
 			<Text><Link source="https://gitlab.com/nlucassoares/clock">Source code</Link> is available.</Text>
 		</Page>

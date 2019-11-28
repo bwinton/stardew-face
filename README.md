@@ -17,7 +17,6 @@ This [topic](https://community.fitbit.com/t5/SDK-Development/Animate-FROM-TO-pro
 - The seconds option disables am/pm display when selected (if time mode set to 12 hours).
 - Scrolling formula looks like [this](http://www.iquilezles.org/apps/graphtoy/?f1(x)=sin(x*16)&f2(x)=sin(x*4))
 - Ducks are sleeping between 8pm to 7am.
-- 
 
 ## Change log
 
@@ -34,7 +33,7 @@ This [topic](https://community.fitbit.com/t5/SDK-Development/Animate-FROM-TO-pro
 - Added south hemisphere option
 - Now using clock parameters embedded am/pm on/off toggle as fitbit one is hided in website settings
 - Added option to display month into date label
-- Little duck moving on map
+- Little ducks moving on map
 - Map scrolling
 - Added night mask
 
@@ -42,11 +41,17 @@ This [topic](https://community.fitbit.com/t5/SDK-Development/Animate-FROM-TO-pro
 
 - Added support for ionic (higgs) and versa lite (gemini)
 
+### v1.0.13
+
+- Added support for versa 2 (mira)
+- Added new option to deactivate scrolling of the background map
+
 ## Contributors
 
-- Maksi Lucy Bähr: Requested heart rate and possibility to display seconds (switchable in settings).
-- Brooke Stehn: Requested south hemisphere seasons switch.
-- Saymawa (reddit): Wanted to install it on ionic.
+- Maksi Lucy Bähr: Requested heart rate and possibility to display seconds (switchable in settings)
+- Brooke Stehn: Requested south hemisphere seasons switch
+- Saymawa (reddit): Wanted to install it on ionic
+- Hannah and Caroline: Requested support for versa 2
 
 ## Author
 

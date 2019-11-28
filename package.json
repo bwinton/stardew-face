@@ -1,10 +1,10 @@
 {
   "name": "clock",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@fitbit/sdk": "~3.1.2",
-    "@fitbit/sdk-cli": "^1.6.3",
+    "@fitbit/sdk": "~4.0.0",
+    "@fitbit/sdk-cli": "^1.7.0",
     "fitfont": "^1.2.5"
   },
   "fitbit": {
@@ -20,7 +20,8 @@
     "buildTargets": [
       "meson",
       "higgs",
-      "gemini"
+      "gemini",
+      "mira"
     ],
     "i18n": {},
     "defaultLanguage": "en-US"

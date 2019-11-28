@@ -21,8 +21,9 @@ let currentDisplayMode = 0;
 
 let isDisplayingSeconds = false;
 let isSouthHemisphere = false;
-let isAmPm = true;
+let is24HoursMode = false;
 let isDisplayingMonth = false;
+let isDeactivatingScrolling = false;
 
 // https://dev.fitbit.com/build/guides/multiple-devices/#code-detection
 if (!device.screen) device.screen = { width: 348, height: 250 };
@@ -64,11 +65,14 @@ messaging.peerSocket.onmessage = evt => {
 			isSouthHemisphere = ( evt.data.value === true );
 			break;
 		case common.IS_24_HOURS_MODE:
-			isAmPm = ( evt.data.value === false );
+			is24HoursMode = ( evt.data.value === true );
 			break;
 		case common.IS_DISPLAY_MONTH:
 			isDisplayingMonth = ( evt.data.value === true );
 			break;
+		case common.IS_DEACTIVATING_SCROLLING:
+			isDeactivatingScrolling = ( evt.data.value === true );
+			break
 
 		default:
 			console.log( "unknown parameter key" );
@@ -110,8 +114,13 @@ clock.ontick = (evt) => {
 	constants.energyBarContainer.y = Math.ceil( ( device.screen.height / 2 ) - ( constants.energyBarContainer.height / 2 ) );
 
 	// update map scrolling
-	constants.mapBottom[ 0 ].x = constants.mapTop[ 0 ].x = -1 * Math.ceil( Math.abs( Math.sin( ( evt.date.getTime( ) / 2000000 ) * 16 ) ) * ( constants.MapBackgroundDimension.x - device.screen.width ) );
-	constants.mapBottom[ 0 ].y = constants.mapTop[ 0 ].y = -1 * Math.ceil( Math.abs( Math.sin( ( evt.date.getTime( ) / 2000000 ) * 4 ) ) * ( constants.MapBackgroundDimension.y - device.screen.height ) );
+	if( isDeactivatingScrolling ) {
+		constants.mapBottom[ 0 ].x = 0;
+		constants.mapBottom[ 0 ].y = 0;
+	} else {
+		constants.mapBottom[ 0 ].x = constants.mapTop[ 0 ].x = -1 * Math.ceil( Math.abs( Math.sin( ( evt.date.getTime( ) / 2000000 ) * 16 ) ) * ( constants.MapBackgroundDimension.x - device.screen.width ) );
+		constants.mapBottom[ 0 ].y = constants.mapTop[ 0 ].y = -1 * Math.ceil( Math.abs( Math.sin( ( evt.date.getTime( ) / 2000000 ) * 4 ) ) * ( constants.MapBackgroundDimension.y - device.screen.height ) );
+	}
 	for( let i = 1; i < 3; i++ ) {
 		constants.mapBottom[ i ].x = constants.mapTop[ i ].x = constants.mapBottom[ 0 ].x + i * 300;
 		constants.mapBottom[ i ].y = constants.mapTop[ i ].y = constants.mapBottom[ 0 ].y;
@@ -193,10 +202,10 @@ clock.ontick = (evt) => {
 
 	// update time
 	let timeContent = "";
-	if( isAmPm ) {
-		timeContent = ( ( evt.date.getHours( ) < 12 ) ? ( ( evt.date.getHours( ) === 0 ) ? 12 : evt.date.getHours( ) + "" ) : ( ( evt.date.getHours( ) % 12 === 0 ) ? 12 : ( evt.date.getHours( ) % 12 ) + "" ) ) + ( evt.date.getSeconds( ) % 2 === 0 ? ":" : " " ) + ( evt.date.getMinutes( ) < 10 ? ( "0" + evt.date.getMinutes( ) ) : evt.date.getMinutes( ) ) + ( isDisplayingSeconds ? ( ( evt.date.getSeconds( ) % 2 === 0 ? ":" : " " ) + ( evt.date.getSeconds( ) < 10 ? ( "0" + evt.date.getSeconds( ) ) : evt.date.getSeconds( ) ) ) : "" ) + " " + ( isDisplayingSeconds ? "" : ( ( evt.date.getHours( ) < 12 ) ? "am" : "pm" ) );
-	} else {
+	if( is24HoursMode ) {
 		timeContent = evt.date.getHours( ) + ( evt.date.getSeconds( ) % 2 === 0 ? ":" : " " ) + ( evt.date.getMinutes( ) < 10 ? ( "0" + evt.date.getMinutes( ) ) : evt.date.getMinutes( ) ) + ( isDisplayingSeconds ? ( ( evt.date.getSeconds( ) % 2 === 0 ? ":" : " " ) + ( evt.date.getSeconds( ) < 10 ? ( "0" + evt.date.getSeconds( ) ) : evt.date.getSeconds( ) ) ) : "" );
+	} else {
+		timeContent = ( ( evt.date.getHours( ) < 12 ) ? ( ( evt.date.getHours( ) === 0 ) ? 12 : evt.date.getHours( ) + "" ) : ( ( evt.date.getHours( ) % 12 === 0 ) ? 12 : ( evt.date.getHours( ) % 12 ) + "" ) ) + ( evt.date.getSeconds( ) % 2 === 0 ? ":" : " " ) + ( evt.date.getMinutes( ) < 10 ? ( "0" + evt.date.getMinutes( ) ) : evt.date.getMinutes( ) ) + ( isDisplayingSeconds ? ( ( evt.date.getSeconds( ) % 2 === 0 ? ":" : " " ) + ( evt.date.getSeconds( ) < 10 ? ( "0" + evt.date.getSeconds( ) ) : evt.date.getSeconds( ) ) ) : "" ) + " " + ( isDisplayingSeconds ? "" : ( ( evt.date.getHours( ) < 12 ) ? "am" : "pm" ) );
 	}
 	constants.timeLabel.text = timeContent;
 	constants.timeShadowLabel.text = timeContent;
