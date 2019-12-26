@@ -55,6 +55,6 @@ This [topic](https://community.fitbit.com/t5/SDK-Development/Animate-FROM-TO-pro
 
 ## Author
 
-SOARES Lucas <lucas.soares.npro@gmail.com>
+SOARES Lucas <lucas.soares.npro@gmail.com> (u/nprojectn)
 
 https://gitlab.com/nlucassoares/clock
