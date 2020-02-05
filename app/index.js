@@ -14,6 +14,7 @@ import { locale } from "user-settings";
 import { HeartRateSensor } from "heart-rate";
 
 const MaximumNightMaskOpacity = 0.5;
+const DuckCount = 10;
 
 let currentWaterFrame = 0;
 let currentHeartBeat = 1;
@@ -24,22 +25,15 @@ let isSouthHemisphere = false;
 let is24HoursMode = false;
 let isDisplayingMonth = false;
 let isDeactivatingScrolling = false;
+let isMonthFormatUs = false;
 
 // https://dev.fitbit.com/build/guides/multiple-devices/#code-detection
 if (!device.screen) device.screen = { width: 348, height: 250 };
 
-let duckArray = [
-	new duck.Duck(0, constants.MapCollision),
-	new duck.Duck(1, constants.MapCollision),
-	new duck.Duck(2, constants.MapCollision),
-	new duck.Duck(3, constants.MapCollision),
-	new duck.Duck(4, constants.MapCollision),
-	new duck.Duck(5, constants.MapCollision),
-	new duck.Duck(6, constants.MapCollision),
-	new duck.Duck(7, constants.MapCollision),
-	new duck.Duck(8, constants.MapCollision),
-	new duck.Duck(9, constants.MapCollision),
-];
+let duckArray = [];
+for(let currentDuck = 0; currentDuck < DuckCount; currentDuck++) {
+	duckArray.push(new duck.Duck(currentDuck, constants.MapCollision));
+}
 
 if (HeartRateSensor) {
 	const hrm = new HeartRateSensor();
@@ -72,7 +66,10 @@ messaging.peerSocket.onmessage = evt => {
 			break;
 		case common.IS_DEACTIVATING_SCROLLING:
 			isDeactivatingScrolling = ( evt.data.value === true );
-			break
+			break;
+		case common.IS_MONTH_FORMAT_US:
+			isMonthFormatUs = ( evt.data.value === true );
+			break;
 
 		default:
 			console.log( "unknown parameter key" );
@@ -185,11 +182,16 @@ clock.ontick = (evt) => {
 			day = constants.WeekDayItalian[ evt.date.getDay( ) ];
 			break
 	}
-	let monthName = "";
+	let dateContent = "";
 	if( isDisplayingMonth ) {
-		monthName = "/" + ( evt.date.getMonth( ) + 1 );
+		if( isMonthFormatUs ) {
+			dateContent = day + ". " + ( evt.date.getMonth() + 1) + "/" + evt.date.getDate( );
+		} else {
+			dateContent = day + ". " + evt.date.getDate( ) + "/" + ( evt.date.getMonth() + 1);
+		}
+	} else {
+		dateContent = day + ". " + evt.date.getDate( );
 	}
-	let dateContent = day + ". " + evt.date.getDate( ) + monthName;
 	constants.dateLabel.text = dateContent;
 	constants.dateShadowLabel.text = dateContent;
 

@@ -23,6 +23,10 @@ function settingsComponent(props) {
 					settingsKey="isDeactivateScroll"
 					label="Deactivate scrolling?"
 				/>
+				<Toggle
+					settingsKey="isMonthFormatUS"
+					label="MM/DD date format?"
+				/>
 			</Section>
 			<Text><Link source="https://gitlab.com/nlucassoares/clock">Source code</Link> is available.</Text>
 		</Page>
