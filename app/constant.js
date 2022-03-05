@@ -97,7 +97,7 @@ export const stepLabel = new FitFont(
 
 		halign: 'end',
 		valign: 'baseline',
-		letterspacing: 4
+		letterspacing: 3
 	}
 );
 
