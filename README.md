@@ -5,7 +5,10 @@
 ### Regenerate fit font characters:
 
 ```bash
+npx fitfont-generate SVBold-inner.ttf 35 "1234567890 "
+mv resources/SVBold_Inner_35/ff resources/SVNumber/
 npx fitfont-generate SVThin.ttf 35 "AZERTYUIOPQSDFGHJKLMWXCVBNazertyuiopqsdfghjklmwxcvbn.1234567890: /"
+npx fitfont-generate SVThin.ttf 42 "AZERTYUIOPQSDFGHJKLMWXCVBNazertyuiopqsdfghjklmwxcvbn.1234567890: /"
 ```
 
 ### Animation

@@ -95,7 +95,7 @@ export const stepLabel = new FitFont(
 		id:'goldText',
 		font:'SVNumber',
 
-		halign: 'start',
+		halign: 'end',
 		valign: 'baseline',
 		letterspacing: 4
 	}

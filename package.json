@@ -3,9 +3,9 @@
   "version": "1.0.14",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@fitbit/sdk": "~4.0.0",
-    "@fitbit/sdk-cli": "^1.7.0",
-    "fitfont": "^1.2.5"
+    "@fitbit/sdk": "^6.0.2",
+    "@fitbit/sdk-cli": "^1.7.3",
+    "fitfont": "^1.3.3"
   },
   "fitbit": {
     "appUUID": "8ed8327f-35e1-4888-ba6e-cc07c0f60b4b",
@@ -18,10 +18,8 @@
       "access_heart_rate"
     ],
     "buildTargets": [
-      "meson",
-      "higgs",
-      "gemini",
-      "mira"
+      "atlas",
+      "vulcan"
     ],
     "i18n": {},
     "defaultLanguage": "en-US"
