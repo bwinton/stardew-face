@@ -1,19 +1,6 @@
 # Stardew valley clock face
 
-## Do not forget
-
-### Regenerate fit font characters:
-
-```bash
-npx fitfont-generate SVBold-inner.ttf 35 "1234567890 "
-mv resources/SVBold_Inner_35/ff resources/SVNumber/
-npx fitfont-generate SVThin.ttf 35 "AZERTYUIOPQSDFGHJKLMWXCVBNazertyuiopqsdfghjklmwxcvbn.1234567890: %/"
-npx fitfont-generate SVThin.ttf 42 "AZERTYUIOPQSDFGHJKLMWXCVBNazertyuiopqsdfghjklmwxcvbn.1234567890: /"
-```
-
-### Animation
-
-This [topic](https://community.fitbit.com/t5/SDK-Development/Animate-FROM-TO-properties/td-p/2792974) saved me.
+[How to get it running.](RUNNING.md)
 
 ## Notes
 
@@ -24,10 +11,10 @@ This [topic](https://community.fitbit.com/t5/SDK-Development/Animate-FROM-TO-pro
 
 ## Todo:
 
-[] Add the battery percentage on the second screen.
-[] Add the heart rate in large on the second screen.
-[] Add the weather on the second screen.
-[] Figure out why the ducks move weird sometimes. (Screen-size related?)
+[] Add the battery percentage on the second screen.  
+[] Add the heart rate in large on the second screen.  
+[] Add the weather on the second screen.  
+[] Figure out why the ducks move weird sometimes. (Screen-size related?)  
 
 ## Change log
 
