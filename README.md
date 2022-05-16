@@ -7,7 +7,7 @@
 ```bash
 npx fitfont-generate SVBold-inner.ttf 35 "1234567890 "
 mv resources/SVBold_Inner_35/ff resources/SVNumber/
-npx fitfont-generate SVThin.ttf 35 "AZERTYUIOPQSDFGHJKLMWXCVBNazertyuiopqsdfghjklmwxcvbn.1234567890: /"
+npx fitfont-generate SVThin.ttf 35 "AZERTYUIOPQSDFGHJKLMWXCVBNazertyuiopqsdfghjklmwxcvbn.1234567890: %/"
 npx fitfont-generate SVThin.ttf 42 "AZERTYUIOPQSDFGHJKLMWXCVBNazertyuiopqsdfghjklmwxcvbn.1234567890: /"
 ```
 
@@ -20,6 +20,14 @@ This [topic](https://community.fitbit.com/t5/SDK-Development/Animate-FROM-TO-pro
 - The seconds option disables am/pm display when selected (if time mode set to 12 hours).
 - Scrolling formula looks like [this](http://www.iquilezles.org/apps/graphtoy/?f1(x)=sin(x*16)&f2(x)=sin(x*4))
 - Ducks are sleeping between 8pm to 7am.
+
+
+## Todo:
+
+[] Add the battery percentage on the second screen.
+[] Add the heart rate in large on the second screen.
+[] Add the weather on the second screen.
+[] Figure out why the ducks move weird sometimes. (Screen-size related?)
 
 ## Change log
 
@@ -56,7 +64,13 @@ This [topic](https://community.fitbit.com/t5/SDK-Development/Animate-FROM-TO-pro
 - Saymawa (reddit): Wanted to install it on ionic
 - Hannah and Caroline: Requested support for versa 2
 
-## Author
+## Fork Author
+
+Blake Winton (/u/bwinton)
+
+https://github.com/bwinton/stardew-face
+
+## Original Author
 
 SOARES Lucas <lucas.soares.npro@gmail.com> (u/nprojectn)
 

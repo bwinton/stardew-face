@@ -261,11 +261,50 @@
 		</svg>
 	</svg>
 
-	<svg id="energyBar">
-		<image href="clock/batteryBack.png" />
-		<svg x="12" y="52" width="22" height="198">
-			<rect x="0" y="0" width="100%" height="100%" fill="green" id="energyBarContent"/>
+	<svg id="screenTwo">
+		<!-- Big Heart Rate at the top. -->
+		<rect x="50" y="44" width="202" height="80" fill="cornsilk" opacity="0.85"/>
+		<text id="bigHeartRateTextShadow"></text>
+		<text id="bigHeartRateText"></text>
+		<text id="bpmShadow">bpm</text>
+		<text id="bpm">bpm</text>
+
+		<!-- Battery at the bottom -->
+		<rect x="170" y="265" width="82" height="30" fill="cornsilk" opacity="0.85"/>
+		<use href="#fitfont" id="energyShadow">
+			<use href="#fitfont-char"/>
+			<use href="#fitfont-char"/>
+			<use href="#fitfont-char"/>
+			<use href="#fitfont-char"/>
+			<use href="#fitfont-char"/>
+			<use href="#fitfont-char"/>
+			<use href="#fitfont-char"/>
+			<use href="#fitfont-char"/>
+			<use href="#fitfont-char"/>
+			<use href="#fitfont-char"/>
+			<use href="#fitfont-char"/>
+		</use>
+		<use href="#fitfont" id="energy">
+			<use href="#fitfont-char"/>
+			<use href="#fitfont-char"/>
+			<use href="#fitfont-char"/>
+			<use href="#fitfont-char"/>
+			<use href="#fitfont-char"/>
+			<use href="#fitfont-char"/>
+			<use href="#fitfont-char"/>
+			<use href="#fitfont-char"/>
+			<use href="#fitfont-char"/>
+			<use href="#fitfont-char"/>
+			<use href="#fitfont-char"/>
+		</use>
+
+
+		<svg id="energyBar">
+			<image href="clock/batteryBack.png" />
+			<svg x="12" y="52" width="22" height="198"> 
+				<rect x="0" y="0" width="100%" height="100%" fill="green" id="energyBarContent"/>
+			</svg>
+			<image href="clock/battery.png" />
 		</svg>
-		<image href="clock/battery.png" />
 	</svg>
 </svg>

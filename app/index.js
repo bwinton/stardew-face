@@ -40,6 +40,8 @@ if (HeartRateSensor) {
 	hrm.addEventListener("reading", () => {
 		constants.heartRateText.text = hrm.heartRate;
 		constants.heartRateTextShadow.text = hrm.heartRate;
+		constants.bigHeartRateText.text = hrm.heartRate;
+		constants.bigHeartRateTextShadow.text = hrm.heartRate;
 	});
 	hrm.start();
 }
@@ -84,15 +86,15 @@ constants.root.onclick = (evt) => {
 		default:
 		case 0:
 			constants.clockElement.style.visibility = "visible";
-			constants.energyBarContainer.style.visibility = "hidden";
+			constants.screenTwo.style.visibility = "hidden";
 			break;
 		case 1:
 			constants.clockElement.style.visibility = "hidden";
-			constants.energyBarContainer.style.visibility = "visible";
+			constants.screenTwo.style.visibility = "visible";
 			break;
 		case 2:
 			constants.clockElement.style.visibility = "hidden";
-			constants.energyBarContainer.style.visibility = "hidden";
+			constants.screenTwo.style.visibility = "hidden";
 			break;
 	}
 };
@@ -218,6 +220,9 @@ clock.ontick = (evt) => {
 
 	// update energy bar
 	let level = battery.chargeLevel;
+	constants.energyLabel.text = level + "%";
+	constants.energyShadowLabel.text = level + "%";
+
 	let energyBarHeight = Math.floor( level / 100 * constants.energyBarLength );
 	constants.energyBar.height = energyBarHeight;
 	constants.energyBar.y = constants.energyBarLength - energyBarHeight;

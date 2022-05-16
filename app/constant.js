@@ -123,6 +123,31 @@ export const heartRateTextShadow = new FitFont(
 	}
 );
 
+export const bigHeartRateText = document.getElementById("bigHeartRateText");
+export const bigHeartRateTextShadow = document.getElementById("bigHeartRateTextShadow");
+
+export const energyLabel = new FitFont(
+	{
+			id:'energy',
+			font:'SVThin_35',
+
+			halign: 'end',
+			valign: 'baseline',
+			letterspacing: 0
+	}
+);
+
+export const energyShadowLabel = new FitFont(
+	{
+		id:'energyShadow',
+		font:'SVThin_35',
+
+		halign: 'end',
+		valign: 'baseline',
+		letterspacing: 0
+	}
+);
+
 export const root = document.getElementById( "root" );
 
 export const clockElement= document.getElementById( "clockElement" );
@@ -139,6 +164,7 @@ export const season = document.getElementById( "season" );
 export const energyBarLength = 198;
 export const energyBar = document.getElementById( "energyBarContent" );
 export const energyBarContainer = document.getElementById( "energyBar" );
+export const screenTwo = document.getElementById( "screenTwo" );
 
 export const heartFadeAnimation = document.getElementById("heartAnimationFade");
 export const heartRiseAnimation = document.getElementById("heartAnimationRise");

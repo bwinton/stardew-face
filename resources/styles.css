@@ -36,16 +36,6 @@
   y: 226;
 }
 
-#energyBar {
-  width: 46;
-  height: 254;
-
-  x: 252;
-  y: 25;
-
-  visibility: hidden;
-}
-
 #heartRateText {
   x: 144;
   y: 92;
@@ -59,4 +49,60 @@
   fill: #D3904A;
 
   text-length: 3;
+}
+
+#screenTwo {
+  visibility: hidden;
+}
+
+#energyBar {
+  width: 46;
+  height: 254;
+
+  x: 252;
+  y: 25;
+}
+
+#bigHeartRateText {
+  x: 215;
+  y: 116;
+  font-size: 100;
+
+  text-length: 3;
+  text-anchor: end;
+}
+
+#bigHeartRateTextShadow {
+  x: 213;
+  y: 118;
+  font-size: 100;
+  fill: #D3904A;
+
+  text-length: 3;
+  text-anchor: end;
+}
+
+#energy {
+  x: 250;
+  y: 292;
+  fill: #2C1100;
+}
+
+#energyShadow {
+  x: 249;
+  y: 293;
+  fill: #D3904A;
+}
+
+#bpm {
+  x: 212;
+  y: 117;
+  font-size: 20;
+}
+
+#bpmShadow {
+  x: 211;
+  y: 118;
+  font-size: 20;
+  fill: #D3904A;
 }
