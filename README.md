@@ -11,10 +11,10 @@
 
 ## Todo:
 
-[] Add the battery percentage on the second screen.  
-[] Add the heart rate in large on the second screen.  
-[] Add the weather on the second screen.  
-[] Figure out why the ducks move weird sometimes. (Screen-size related?)  
+- [ ] Add the battery percentage on the second screen.  
+- [ ] Add the heart rate in large on the second screen.  
+- [ ] Add the weather on the second screen.  
+- [ ] Figure out why the ducks move weird sometimes. (Screen-size related?)  
 
 ## Change log
 
